@@ -1,8 +1,10 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+
+import 'views/desktop_view.dart';
+import 'views/mobile_view.dart';
 
 void main() {
   usePathUrlStrategy();
@@ -17,15 +19,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(
       builder: (_, orientation, deviceType) {
-        print(orientation.name);
-        print(deviceType.name);
         return MaterialApp(
-          title: 'Portfolio App',
+          title: 'Mohit Varma',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home: const MyHomePage(title: 'Portfolio App'),
+              primarySwatch: Colors.blue,
+              // fontFamily: GoogleFonts.titilliumWeb().fontFamily,
+              // textTheme: const TextTheme(
+              //   bodyLarge: TextStyle(color: Colors.white),
+              //   bodyMedium: TextStyle(color: Colors.white)
+              // )
+              textTheme: GoogleFonts.poppinsTextTheme(const TextTheme(
+                  bodyLarge: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.bold),
+                  bodyMedium: TextStyle(color: Colors.white)))),
+          home: const MyHomePage(title: 'Mohit Varma'),
         );
       },
     );
@@ -41,34 +51,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String name = "";
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (_, constraints) {
-        print(constraints.maxHeight);
-        print(constraints.maxWidth);
-        return Scaffold(
-          body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-              child: Image.network(
-                "https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-                fit: BoxFit.cover,
-              ),
-            ),
-          ), // This trailing comma makes auto-formatting nicer for build methods.
-        );
+        if (constraints.maxWidth <= 600) {
+          return const MobileView();
+        } else {
+          return const DesktopView();
+        }
       },
     );
   }
