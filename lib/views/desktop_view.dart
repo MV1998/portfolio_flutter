@@ -1,6 +1,13 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:mohit_portfolio/view_models/animation_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'dart:math' as math;
+
+late AnimationProvider _animationProvider;
+
 
 class DesktopView extends StatefulWidget {
   const DesktopView({super.key});
@@ -10,6 +17,14 @@ class DesktopView extends StatefulWidget {
 }
 
 class _DesktopViewState extends State<DesktopView> {
+
+
+  @override
+  void initState() {
+    _animationProvider = Provider.of<AnimationProvider>(context, listen: false);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,10 +135,34 @@ class Header extends StatelessWidget {
   }
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+
+  late AnimationController animationController;
+
+
+  @override
+  void initState() {
+    animationController = AnimationController(vsync: this,
+    duration: const Duration(seconds: 10))..repeat(reverse: false);
+
+    animationController.addListener(() {
+      _animationProvider.updateAngle(animationController.value);
+    });
+
+    // animationController.forward();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    print("build");
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
@@ -141,34 +180,34 @@ class Home extends StatelessWidget {
               //       .bodyLarge
               //       ?.copyWith(fontSize: 48.0),
               // ),
-            Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                'Hi, I am ',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    'Hi, I am ',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge,
+                  ),
+                  const SizedBox(height: 100.0),
+                  DefaultTextStyle(
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!,
+                    child: AnimatedTextKit(
+                      repeatForever: true,
+                      animatedTexts: [
+                        RotateAnimatedText("Mohit Varma"),
+                        RotateAnimatedText('Mobile App Developer'),
+                        RotateAnimatedText('Self-Learner'),
+                        RotateAnimatedText('Enthusiastic'),
+                        RotateAnimatedText('Traveller'),
+                      ],
+                      onTap: () {},
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 100.0),
-              DefaultTextStyle(
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!,
-                child: AnimatedTextKit(
-                  repeatForever: true,
-                  animatedTexts: [
-                    RotateAnimatedText("Mohit Varma"),
-                    RotateAnimatedText('Mobile App Developer'),
-                    RotateAnimatedText('Self-Learner'),
-                    RotateAnimatedText('Enthusiastic'),
-                    RotateAnimatedText('Traveller'),
-                  ],
-                  onTap: () {},
-                ),
-              ),
-            ],
-          ),
               const SizedBox(
                 height: 5.0,
               ),
@@ -180,15 +219,101 @@ class Home extends StatelessWidget {
           height: 400.0,
           width: 400.0,
           child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(300.0)),
-           // clipper: TriangleClipper(),
+            borderRadius: const BorderRadius.all(Radius.circular(300.0)),
+            // clipper: TriangleClipper(),
             child: Image.asset(
               "assets/images/mohitvarma_self.jpg",
               fit: BoxFit.cover,
             ),
           ),
         )
+        // Consumer<AnimationProvider>(
+        //   builder: (_, value, child) {
+        //     return CustomPaint(
+        //       painter: CustomArc(value.angle),
+        //       child: child,
+        //     );
+        //   },
+        //   child: SizedBox(
+        //     height: 400.0,
+        //     width: 400.0,
+        //     child: Padding(
+        //       padding: const EdgeInsets.all(8.0),
+        //       child: ClipRRect(
+        //         borderRadius: const BorderRadius.all(Radius.circular(300.0)),
+        //         // clipper: TriangleClipper(),
+        //         child: CachedNetworkImage(
+        //           imageUrl: "http://via.placeholder.com/350x150",
+        //           placeholder: (context, url) => CircularProgressIndicator(),
+        //           errorWidget: (context, url, error) => Icon(Icons.error),
+        //         ),
+        //         // child: Image.asset(
+        //         //   "assets/images/mohitvarma_self.jpg",
+        //         //   fit: BoxFit.cover,
+        //         // ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        // CustomPaint(
+        //   painter: CustomArc(angle),
+        //   // child: Container(
+        //   //   height: 300,
+        //   //   width: 300,
+        //   // ),
+        //   child: SizedBox(
+        //     height: 400.0,
+        //     width: 400.0,
+        //     child: Padding(
+        //       padding: const EdgeInsets.all(8.0),
+        //       child: ClipRRect(
+        //         borderRadius: const BorderRadius.all(Radius.circular(300.0)),
+        //         // clipper: TriangleClipper(),
+        //         child: CachedNetworkImage(
+        //           imageUrl: "http://via.placeholder.com/350x150",
+        //           placeholder: (context, url) => CircularProgressIndicator(),
+        //           errorWidget: (context, url, error) => Icon(Icons.error),
+        //         ),
+        //         // child: Image.asset(
+        //         //   "assets/images/mohitvarma_self.jpg",
+        //         //   fit: BoxFit.cover,
+        //         // ),
+        //       ),
+        //     ),
+        //   ),
+        // )
+        // SizedBox(
+        //   height: 400.0,
+        //   width: 400.0,
+        //   child: ,
+        // )
       ],
     );
   }
 }
+
+class CustomArc extends CustomPainter {
+  double angle;
+  CustomArc(this.angle);
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint p = Paint()..color = Colors.purple
+        ..strokeWidth = 4.0
+        ..style = PaintingStyle.stroke;
+    canvas.drawArc(
+      Rect.fromLTRB(0.0, 0.0,
+          size.width, size.height),
+      math.pi * angle,
+      2 * math.pi * angle,
+      false,
+      p
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return false;
+  }
+
+}
+

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mohit_portfolio/view_models/animation_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'views/desktop_view.dart';
@@ -58,7 +60,13 @@ class _MyHomePageState extends State<MyHomePage> {
         if (constraints.maxWidth <= 600) {
           return const MobileView();
         } else {
-          return const DesktopView();
+          return ChangeNotifierProvider<AnimationProvider>(
+            create: (_) {
+              return AnimationProvider();
+            },
+            child: const DesktopView(),
+          );
+          // return const DesktopView();
         }
       },
     );
