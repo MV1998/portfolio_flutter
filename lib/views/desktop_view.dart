@@ -212,6 +212,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 height: 5.0,
               ),
               const Text("I'm an experienced Flutter and Android developer with more than 3.5 years of expertise in creating strong and scalable mobile applications. My love for mobile development and focus on details have enabled me to craft user-friendly apps that are both intuitive and surpass user expectations."),
+              const SizedBox(
+                height: 5.0,
+              ),
+              const SocialIcons()
             ],
           ),
         ),
@@ -310,6 +314,24 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         //   width: 400.0,
         //   child: ,
         // )
+      ],
+    );
+  }
+}
+
+class SocialIcons extends StatelessWidget {
+  const SocialIcons({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        TextButton(onPressed: () {}, child: const Text("LinkedIn")),
+        TextButton(onPressed: () {}, child: const Text("Github")),
+        TextButton(onPressed: () {}, child: const Text("Instagram")),
+        TextButton(onPressed: () {}, child: const Text("YouTube")),
       ],
     );
   }
