@@ -1,10 +1,15 @@
+import 'dart:ui';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mohit_portfolio/view_models/animation_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'dart:math' as math;
+
+import 'package:url_launcher/url_launcher.dart';
 
 late AnimationProvider _animationProvider;
 
@@ -27,6 +32,7 @@ class _DesktopViewState extends State<DesktopView> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
       body: SingleChildScrollView(
@@ -35,7 +41,7 @@ class _DesktopViewState extends State<DesktopView> {
           child: Center(
             child: SizedBox(
               width: 85.w,
-              child: const Column(
+              child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Header(),
@@ -167,7 +173,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
       children: [
-        SizedBox(
+        Container(
           width: 40.w,
           height: 60.h,
           child: Column(
@@ -213,47 +219,47 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ),
               const Text("I'm an experienced Flutter and Android developer with more than 3.5 years of expertise in creating strong and scalable mobile applications. My love for mobile development and focus on details have enabled me to craft user-friendly apps that are both intuitive and surpass user expectations."),
               const SizedBox(
-                height: 5.0,
+                height: 20.0,
               ),
               const SocialIcons()
             ],
           ),
         ),
-        // SizedBox(
-        //   height: 400.0,
-        //   width: 400.0,
-        //   child: ClipRRect(
-        //     borderRadius: const BorderRadius.all(Radius.circular(300.0)),
-        //     // clipper: TriangleClipper(),
-        //     child: Image.asset(
-        //       "assets/images/mohitvarma_self.jpg",
-        //       fit: BoxFit.cover,
-        //     ),
-        //   ),
-        // ),
-        AnimatedBuilder(
-          animation: animationController,
-        builder: (_, child) {
-          return CustomPaint(
-            painter: CustomArc(animationController.value),
-            child: child,
-          );
-        },
-          child: SizedBox(
-            height: 400.0,
-            width: 400.0,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(300.0)),
-                // clipper: TriangleClipper(),
-                child: Image.asset(
-                  "assets/images/mohitvarma_self.jpg",
-                  fit: BoxFit.cover,
-                ),
-              ),
+        Container(
+          height: 60.h,
+          width: 30.w,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(300.0)),
+            // clipper: TriangleClipper(),
+            child: Image.asset(
+              "assets/images/mohitvarma_self.jpg",
+              fit: BoxFit.cover,
             ),
-          ),),
+          ),
+        ),
+        // AnimatedBuilder(
+        //   animation: animationController,
+        // builder: (_, child) {
+        //   return CustomPaint(
+        //     painter: CustomArc(animationController.value),
+        //     child: child,
+        //   );
+        // },
+        //   child: SizedBox(
+        //     height: 400.0,
+        //     width: 400.0,
+        //     child: Padding(
+        //       padding: const EdgeInsets.all(8.0),
+        //       child: ClipRRect(
+        //         borderRadius: const BorderRadius.all(Radius.circular(300.0)),
+        //         // clipper: TriangleClipper(),
+        //         child: Image.asset(
+        //           "assets/images/mohitvarma_self.jpg",
+        //           fit: BoxFit.cover,
+        //         ),
+        //       ),
+        //     ),
+        //   ),),
         // Consumer<AnimationProvider>(
         //   builder: (_, value, child) {
         //     return CustomPaint(
@@ -324,14 +330,36 @@ class SocialIcons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double padding = 18.0;
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       mainAxisSize: MainAxisSize.max,
       children: [
-        TextButton(onPressed: () {}, child: const Text("LinkedIn")),
-        TextButton(onPressed: () {}, child: const Text("Github")),
-        TextButton(onPressed: () {}, child: const Text("Instagram")),
-        TextButton(onPressed: () {}, child: const Text("YouTube")),
+        ElevatedButton(onPressed: () async {
+          await launchUrl(Uri.parse("https://www.linkedin.com/in/mohit-varma-199257146/"));
+        },
+        style: ElevatedButton.styleFrom(
+          shape: const CircleBorder(),
+          padding: EdgeInsets.all(padding),
+          backgroundColor: Colors.blue.shade600,
+        ), child: const Icon(FontAwesomeIcons.linkedin, color: Colors.white,),),
+        ElevatedButton(onPressed: () {},
+          style: ElevatedButton.styleFrom(
+              shape: const CircleBorder(),
+              padding: EdgeInsets.all(padding),
+              backgroundColor: Colors.blueGrey.shade600
+          ), child: const Icon(FontAwesomeIcons.github, color: Colors.white,),),
+        ElevatedButton(onPressed: () {},
+          style: ElevatedButton.styleFrom(
+              shape: const CircleBorder(),
+              padding: EdgeInsets.all(padding),
+              backgroundColor: Colors.black
+          ), child: const Icon(FontAwesomeIcons.x, color: Colors.white,),),
+        ElevatedButton(onPressed: () {},
+          style: ElevatedButton.styleFrom(
+              shape: const CircleBorder(),
+              padding: EdgeInsets.all(padding),
+              backgroundColor: Colors.purpleAccent
+          ), child: const Icon(FontAwesomeIcons.instagram, color: Colors.white,),),
       ],
     );
   }

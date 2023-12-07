@@ -57,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (_, constraints) {
+        print(constraints.maxWidth);
         if (constraints.maxWidth <= 600) {
           return const MobileView();
         } else {
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
             create: (_) {
               return AnimationProvider();
             },
-            child: const DesktopView(),
+            child: DesktopView(),
           );
           // return const DesktopView();
         }
