@@ -48,7 +48,11 @@ class _DesktopViewState extends State<DesktopView> {
                   SizedBox(
                     height: 100.0,
                   ),
-                  Home()
+                  Home(),
+                  SizedBox(
+                    height: 100.0,
+                  ),
+                  TechStack(),
                 ],
               ),
             ),
@@ -96,7 +100,7 @@ class Header extends StatelessWidget {
                 onHover: (value) {
                   print(value);
                 },
-                child: Text("Services",
+                child: Text("Tech Stack",
                     style: Theme.of(context).textTheme.bodyMedium),
               ),
               const SizedBox(
@@ -342,19 +346,25 @@ class SocialIcons extends StatelessWidget {
           padding: EdgeInsets.all(padding),
           backgroundColor: Colors.blue.shade600,
         ), child: const Icon(FontAwesomeIcons.linkedin, color: Colors.white,),),
-        ElevatedButton(onPressed: () {},
+        ElevatedButton(onPressed: () async {
+          await launchUrl(Uri.parse("https://github.com/MV1998"));
+        },
           style: ElevatedButton.styleFrom(
               shape: const CircleBorder(),
               padding: EdgeInsets.all(padding),
               backgroundColor: Colors.blueGrey.shade600
           ), child: const Icon(FontAwesomeIcons.github, color: Colors.white,),),
-        ElevatedButton(onPressed: () {},
+        ElevatedButton(onPressed: () async {
+          await launchUrl(Uri.parse("https://twitter.com/mv501049"));
+        },
           style: ElevatedButton.styleFrom(
               shape: const CircleBorder(),
               padding: EdgeInsets.all(padding),
               backgroundColor: Colors.black
           ), child: const Icon(FontAwesomeIcons.x, color: Colors.white,),),
-        ElevatedButton(onPressed: () {},
+        ElevatedButton(onPressed: () async {
+          await launchUrl(Uri.parse("https://www.instagram.com/mohitvarma__"));
+        },
           style: ElevatedButton.styleFrom(
               shape: const CircleBorder(),
               padding: EdgeInsets.all(padding),
@@ -388,5 +398,71 @@ class CustomArc extends CustomPainter {
     return false;
   }
 
+}
+
+
+class TechStack extends StatelessWidget {
+  const TechStack({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Text("Tech Stack", style: Theme.of(context).textTheme.bodyMedium,),
+        const SizedBox(height: 10.0,),
+        ColoredBox(
+          color: Colors.blueGrey.shade900,
+          child: SizedBox(
+            width: 85.w,
+            height: 10.h,
+            child: Row(
+              children: [
+                ElevatedButton(onPressed: () async {
+                  await launchUrl(Uri.parse("https://www.linkedin.com/in/mohit-varma-199257146/"));
+                },
+                  style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    padding: EdgeInsets.all(15),
+                    backgroundColor: Colors.blue.shade600,
+                  ), child: const Icon(FontAwesomeIcons.android, color: Colors.white,),),
+
+
+                ElevatedButton(onPressed: () async {
+                  await launchUrl(Uri.parse("https://www.linkedin.com/in/mohit-varma-199257146/"));
+                },
+                  style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    padding: EdgeInsets.all(15),
+                    backgroundColor: Colors.blue.shade600,
+                  ), child: const Icon(FontAwesomeIcons.java, color: Colors.white,),),
+
+
+                ElevatedButton(onPressed: () async {
+                  await launchUrl(Uri.parse("https://www.linkedin.com/in/mohit-varma-199257146/"));
+                },
+                  style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    padding: EdgeInsets.all(15),
+                    backgroundColor: Colors.blue.shade600,
+                  ), child: const Icon(FontAwesomeIcons.git, color: Colors.white,),),
+
+
+                ElevatedButton(onPressed: () async {
+                  await launchUrl(Uri.parse("https://www.linkedin.com/in/mohit-varma-199257146/"));
+                },
+                  style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    padding: EdgeInsets.all(15),
+                    backgroundColor: Colors.blue.shade600,
+                  ), child: const Icon(FontAwesomeIcons.github, color: Colors.white,),),
+              ],
+            ),
+          ),
+        )
+      ],
+    );
+  }
 }
 
