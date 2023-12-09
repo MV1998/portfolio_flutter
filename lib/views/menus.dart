@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class MobileView extends StatefulWidget {
-  const MobileView({super.key});
+class Menus extends StatelessWidget {
+  const Menus({super.key});
 
-  @override
-  State<MobileView> createState() => _MobileViewState();
-}
-
-class _MobileViewState extends State<MobileView> {
   @override
   Widget build(BuildContext context) {
 
@@ -69,16 +64,10 @@ class _MobileViewState extends State<MobileView> {
       ),
     ];
 
-
-    return Scaffold(
-      appBar: AppBar(),
-      drawer: Drawer(
-        child: ListView(
-          children: textButtonList,
-        ),
-      ),
-      body: Center(
-        child: Text("Mobile"),
+    return SizedBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: textButtonList,
       ),
     );
   }

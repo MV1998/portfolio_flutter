@@ -33,10 +33,10 @@ class MyApp extends StatelessWidget {
               // )
               textTheme: GoogleFonts.poppinsTextTheme(const TextTheme(
                   bodyLarge: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 28.0,
                       fontWeight: FontWeight.bold),
-                  bodyMedium: TextStyle(color: Colors.white)))),
+                  bodyMedium: TextStyle(color: Colors.black)))),
           home: const MyHomePage(title: 'Mohit Varma'),
         );
       },
