@@ -25,7 +25,7 @@ class Menus extends StatelessWidget {
         onHover: (value) {
           print(value);
         },
-        child: Text("Tech Stack",
+        child: Text("Skills",
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white)),
       ),
       const SizedBox(

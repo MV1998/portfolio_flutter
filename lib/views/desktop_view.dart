@@ -38,7 +38,7 @@ class _DesktopViewState extends State<DesktopView> {
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-              Colors.yellow.shade400,
+              Colors.yellow.shade200,
               Colors.yellow.shade900
             ]
             )
@@ -54,7 +54,7 @@ class _DesktopViewState extends State<DesktopView> {
                   children: [
                     Header(),
                     SizedBox(
-                      height: 100.0,
+                      height: 30.0,
                     ),
                     Home(),
                     SizedBox(
@@ -127,7 +127,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       children: [
         Container(
           width: 40.w,
-          height: 60.h,
+          height: 80.h,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -156,10 +156,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       repeatForever: true,
                       animatedTexts: [
                         RotateAnimatedText("Mohit Varma"),
-                        RotateAnimatedText('Mobile App Developer'),
+                        RotateAnimatedText('a Mobile App Developer'),
                         RotateAnimatedText('Self-Learner'),
                         RotateAnimatedText('Enthusiastic'),
-                        RotateAnimatedText('Traveller'),
+                        RotateAnimatedText('a Traveller'),
                       ],
                       onTap: () {},
                     ),
@@ -169,7 +169,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               const SizedBox(
                 height: 5.0,
               ),
-              const Text("I'm an experienced Flutter and Android developer with more than 3.5 years of expertise in creating strong and scalable mobile applications. My love for mobile development and focus on details have enabled me to craft user-friendly apps that are both intuitive and surpass user expectations."),
+              //const Text("I'm an experienced Flutter and Android developer with more than 3.5 years of expertise in creating strong and scalable mobile applications. My love for mobile development and focus on details have enabled me to craft user-friendly apps that are both intuitive and surpass user expectations."),
+              const Text('''I am a Mobile Application Developer and I love to create apps that would make life easy and enjoyable for people.
+
+I bring excitement and a forward-thinking approach to every project I work on. Turning ideas into reality, especially when faced with challenges, is something I really enjoy.
+
+In my app development work, I make sure to include various tests, organize the code well, and use patterns that make it easy to understand. I also make sure the process of getting the app onto the App and Play store is automated.
+
+Outside of work, I like to read Books, Travelling and also I'm a big fan of Meditation and Yoga too.
+
+I enjoy talking to people and hearing new ideas. I'm always open to discussions, and I'm looking forward to connecting with you. Feel free to get in touch anytime! 🤝'''),
               const SizedBox(
                 height: 20.0,
               ),
