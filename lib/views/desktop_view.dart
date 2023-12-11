@@ -23,7 +23,6 @@ class DesktopView extends StatefulWidget {
 
 class _DesktopViewState extends State<DesktopView> {
 
-
   @override
   void initState() {
     _animationProvider = Provider.of<AnimationProvider>(context, listen: false);
@@ -53,9 +52,6 @@ class _DesktopViewState extends State<DesktopView> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Header(),
-                    SizedBox(
-                      height: 30.0,
-                    ),
                     Home(),
                     SizedBox(
                       height: 65.0,
@@ -186,7 +182,7 @@ I enjoy talking to people and hearing new ideas. I'm always open to discussions,
             ],
           ),
         ),
-        CircularImageView(),
+        CircularImageView(height: 60.h, width: 30.w,),
       ],
     );
   }

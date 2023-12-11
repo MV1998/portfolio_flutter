@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class CircularImageView extends StatelessWidget {
-  const CircularImageView({super.key});
+  double height;
+  double width;
+  CircularImageView({required this.height, required this.width, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60.h,
-      width: 30.w,
+      height: height,
+      width: width,
       child: ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(300.0)),
         // clipper: TriangleClipper(),

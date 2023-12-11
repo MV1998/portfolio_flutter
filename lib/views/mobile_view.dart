@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mohit_portfolio/views/circular_image_view.dart';
+import 'package:sizer/sizer.dart';
 
 class MobileView extends StatefulWidget {
   const MobileView({super.key});
@@ -71,14 +73,34 @@ class _MobileViewState extends State<MobileView> {
 
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+      ),
       drawer: Drawer(
         child: ListView(
           children: textButtonList,
         ),
       ),
-      body: Center(
-        child: Text("Mobile"),
+      body: Container(
+        width: 100.w,
+        height: 100.h,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Colors.yellow.shade200,
+              Colors.yellow.shade900
+            ]
+            )
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CircularImageView(height: 30.h, width: 30.w,),
+              Text("", style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!,)
+            ],
+          ),
+        ),
       ),
     );
   }

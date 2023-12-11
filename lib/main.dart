@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return LayoutBuilder(
       builder: (_, constraints) {
         print(constraints.maxWidth);
-        if (constraints.maxWidth <= 600) {
+        if (constraints.maxWidth <= 900) {
           return const MobileView();
         } else {
           return ChangeNotifierProvider<AnimationProvider>(
