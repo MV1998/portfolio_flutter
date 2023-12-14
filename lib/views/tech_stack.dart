@@ -22,7 +22,7 @@ class TechStack extends StatelessWidget {
             child: Row(
               children: [
                 ElevatedButton(onPressed: () async {
-                  await launchUrl(Uri.parse("https://www.linkedin.com/in/mohit-varma-199257146/"));
+                  await launchUrl(Uri.parse("https://www.linkedin.com/in/mohit-varma-199257146/")); 
                 },
                   style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
