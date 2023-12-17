@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mohit_portfolio/view_models/animation_provider.dart';
+import 'package:mohit_portfolio/views/main_view/tablet_view.dart';
+import 'package:mohit_portfolio/views/responsive_layout.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import 'views/desktop_view.dart';
-import 'views/mobile_view.dart';
+import 'views/main_view/desktop_view.dart';
+import 'views/main_view/mobile_view.dart';
 
 void main() {
   usePathUrlStrategy();
@@ -33,10 +35,10 @@ class MyApp extends StatelessWidget {
               // )
               textTheme: GoogleFonts.poppinsTextTheme(const TextTheme(
                   bodyLarge: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: 28.0,
                       fontWeight: FontWeight.bold),
-                  bodyMedium: TextStyle(color: Colors.black)))),
+                  bodyMedium: TextStyle(color: Colors.white)))),
           home: const MyHomePage(title: 'Mohit Varma'),
         );
       },
@@ -55,6 +57,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    return ResponsiveLayout(
+        mobileView: MobileView(),
+        tabletView: TabletView(),
+        desktopView: ChangeNotifierProvider<AnimationProvider>(
+          create: (_) {
+            return AnimationProvider();
+          },
+          child: DesktopView(),
+        ),
+    );
     return LayoutBuilder(
       builder: (_, constraints) {
         print(constraints.maxWidth);
