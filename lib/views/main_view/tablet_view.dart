@@ -31,7 +31,7 @@ class TabletView extends StatelessWidget {
                       color: Colors.black.withOpacity(.7),
                     ),
                   ),
-                  FractionallySizedBox(
+                  const FractionallySizedBox(
                     widthFactor: 1,
                     heightFactor: .12,
                     child: Row(

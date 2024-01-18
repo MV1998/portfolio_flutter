@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mohit_portfolio/views/circular_image_view.dart';
-import 'package:sizer/sizer.dart';
-import 'dart:math' as math;
 
 class MobileView extends StatefulWidget {
   const MobileView({super.key});
